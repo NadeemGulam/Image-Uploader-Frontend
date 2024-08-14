@@ -1,0 +1,77 @@
+<main>
+  <div class="card rounded border shadow-sm m-4 p-4">
+    <h1 class="text-2xl">Image Uploader</h1>
+    <div class="form_container">
+      <form action="" (submit)="formSubmit($event)">
+        <div class="field_container flex flex-col gap-y-2">
+          <label for="file">Select Image</label>
+          <input type="file" id="file" (change)="handleFileChange($event)" />
+        </div>
+        <div class="field_container text-center m-3">
+          <button
+            type="submit"
+            class="px-3 py-2 bg-blue-700 hover:bg-blue-400 text-white rounded"
+          >
+            Upload
+          </button>
+          <button
+            type="reset"
+            class="ml-3 px-3 py-2 bg-orange-700 hover:bg-orange-400 text-white rounded"
+          >
+            Clear
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div
+      *ngIf="messageStatus"
+      class="success-alert p-4 mb-4 border border-green-500 rounded-lg bg-green-100 text-green-700"
+    >
+      <div class="flex items-center">
+        <svg
+          class="w-6 h-6 mr-2"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M5 13l4 4L19 7"
+          ></path>
+        </svg>
+        <span class="text-lg font-medium">Success!</span>
+      </div>
+      <p class="mt-2">Your Image was uploaded successfully.</p>
+    </div>
+
+    <div
+      *ngIf="uploading"
+      class="loader flex flex-col items-center justify-center p-3 text-center"
+    >
+      <div class="loader-ring"></div>
+      <h1 class="mt-2">Uploading ....</h1>
+    </div>
+
+    <div *ngIf="uploaded_view" class="uploaded_view">
+      <h1>Uploaded Image</h1>
+      <img
+        [src]="uploaded_view"
+        alt="uploaded_view"
+        class="mx-auto h-[300px] mt-4 rounded shadow"
+      />
+    </div>
+  </div>
+</main>
+<!-- Uploaded Images Section  -->
+<div class="mt-4 flex flex-wrap">
+  <img
+    *ngFor="let item of listOfImages"
+    class="h-[200px] m-2 shadow rounded"
+    [src]="item"
+    alt="image list"
+  />
+</div>
